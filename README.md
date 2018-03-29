@@ -99,16 +99,6 @@ Use this service-template for that:
           - "[domain]"
 ```
 
-***Replace variables:***
-
-| Variable | Description | Example |
-| -------- | ----------- | ------- |
-| [service] | Name of your service | yves_at |
-| [app] | Type of your application | yves |
-| [store] | Your store | at |
-| [domain] | Your domain | www.at.suite.local |
-
-
 Also you have to create the file *./env/conf/spryker/spryker_params_[app]_[store]*
 
 Example:
@@ -118,3 +108,32 @@ set $spryker_app_url "www.at.suite.local";
 set $spryker_app_env "development";
 set $spryker_app_store "AT";
 ```
+
+The last step is to add your server to the loadbalancer. For that you have to edit the file ./env/conf/loadbalancer/loadbalancer.conf.  
+Add that for every new server:  
+
+```bash
+server {
+    listen 80;
+
+    server_name [domain];
+
+    access_log /var/log/nginx/[app]-[store]-access.log;
+    error_log /var/log/nginx/[app]-[store]-error.log;
+
+    location / {
+        proxy_pass http://[service];
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+```
+
+***Replace variables:***
+
+| Variable | Description | Example |
+| -------- | ----------- | ------- |
+| [service] | Name of your service | yves_at |
+| [app] | Type of your application | yves |
+| [store] | Your store | at |
+| [domain] | Your domain | www.at.suite.local |
