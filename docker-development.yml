@@ -1,0 +1,27 @@
+version: '3.2'
+services:
+  database:
+    ports:
+      - 5432
+  redis:
+    ports:
+      - 6379
+  elasticsearch:
+    ports:
+      - 9200
+  rabbitmq:
+    ports:
+      - 15672
+  mailcatcher:
+    image: schickling/mailcatcher
+    container_name: mailcatcher
+    ports:
+      - 1080
+  redisui:
+    image: tenstartups/redis-commander
+    container_name: redisui
+    command: --redis-host redis
+    links:
+      - redis:redis
+    ports:
+      - 8081

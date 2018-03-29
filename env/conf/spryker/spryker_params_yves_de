@@ -1,0 +1,4 @@
+set $spryker_app_name "Yves";
+set $spryker_app_url "www.de.suite.local";
+set $spryker_app_env "development";
+set $spryker_app_store "DE";
