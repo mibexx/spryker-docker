@@ -20,7 +20,7 @@ services:
   loadbalancer:
     image: nginx:alpine
     volumes:
-      - ./env/conf/loadbalancer/loadbalancer.conf:/etc/nginx/conf.d/loadbalancer.conf
+      - ./env/conf/loadbalancer/loadbalancer.conf:/etc/nginx/conf.d/default.conf
     ports:
       - 0.0.0.0:80:80
     depends_on:
@@ -124,7 +124,7 @@ services:
       restart_policy:
         condition: on-failure
   yves:
-    image: nginx
+    image: nginx-alpine
     volumes:
       - filestorage:/data
       - ./env/conf/spryker/spryker.conf:/etc/nginx/conf.d/spryker.conf
@@ -143,7 +143,7 @@ services:
         aliases:
           - "zed.de.suite.local"
   zed:
-    image: nginx
+    image: nginx-alpine
     volumes:
       - filestorage:/data
       - ./env/conf/spryker/spryker.conf:/etc/nginx/conf.d/spryker.conf

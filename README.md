@@ -77,18 +77,15 @@ How to add stores
 
 You can edit the compose-file and add own yves/zed container.  
 Use this service-template for that:  
-```
+```    
   [service]:
-    image: nginx
+    image: nginx-alpine
     volumes:
       - filestorage:/data
-    volumes:
       - ./env/conf/spryker/spryker.conf:/etc/nginx/conf.d/spryker.conf
-      - ./env/conf/spryker/spryker_params_[app]_[store]:/etc/nginx/spryker_params
+    - ./env/conf/spryker/spryker_params_[app]_[store]:/etc/nginx/spryker_params
     depends_on:
       - admin
-    volumes:
-      - filestorage:/data
     deploy:
       replicas: 1
       update_config:
