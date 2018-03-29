@@ -116,8 +116,7 @@ services:
     image: nginx:alpine
     volumes:
       - filestorage:/data
-      - ./env/conf/spryker/spryker.conf:/etc/nginx/conf.d/default.conf
-      - ./env/conf/spryker/spryker_params_yves_de:/etc/nginx/spryker_params
+      - ./env/conf/spryker/yves_de.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - admin
     deploy:
@@ -135,8 +134,7 @@ services:
     image: nginx:alpine
     volumes:
       - filestorage:/data
-      - ./env/conf/spryker/spryker.conf:/etc/nginx/conf.d/default.conf
-      - ./env/conf/spryker/spryker_params_zed_de:/etc/nginx/spryker_params
+      - ./env/conf/spryker/zed_de.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - admin
     deploy:
