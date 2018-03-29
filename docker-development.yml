@@ -127,7 +127,6 @@ services:
     image: nginx
     volumes:
       - filestorage:/data
-    volumes:
       - ./env/conf/spryker/spryker.conf:/etc/nginx/conf.d/spryker.conf
       - ./env/conf/spryker/spryker_params_yves_de:/etc/nginx/spryker_params
     depends_on:
@@ -149,7 +148,6 @@ services:
     image: nginx
     volumes:
       - filestorage:/data
-    volumes:
       - ./env/conf/spryker/spryker.conf:/etc/nginx/conf.d/spryker.conf
       - ./env/conf/spryker/spryker_params_zed_de:/etc/nginx/spryker_params
     depends_on:
