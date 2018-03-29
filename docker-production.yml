@@ -100,8 +100,6 @@ services:
         condition: on-failure
   jenkins:
     image: mibexx/spryker-jenkins
-    ports:
-      - 8080
     volumes:
       - filestorage:/data
     depends_on:
