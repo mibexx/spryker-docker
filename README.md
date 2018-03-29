@@ -79,7 +79,7 @@ You can edit the compose-file and add own yves/zed container.
 Use this service-template for that:  
 ```    
   [service]:
-    image: nginx-alpine
+    image: nginx:alpine
     volumes:
       - filestorage:/data
       - ./env/conf/spryker/spryker.conf:/etc/nginx/conf.d/spryker.conf
