@@ -121,8 +121,6 @@ services:
       - ./env/conf/spryker/spryker_params_yves_de:/etc/nginx/spryker_params
     depends_on:
       - admin
-    volumes:
-      - filestorage:/data
     deploy:
       replicas: 1
       update_config:
@@ -142,8 +140,6 @@ services:
       - ./env/conf/spryker/spryker_params_zed_de:/etc/nginx/spryker_params
     depends_on:
       - admin
-    volumes:
-      - filestorage:/data
     deploy:
       replicas: 1
       update_config:
