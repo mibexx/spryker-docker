@@ -79,7 +79,6 @@ services:
         condition: on-failure
   rabbitmq:
     image: rabbitmq:3.7.3-management
-    restart: always
     environment:
       RABBITMQ_DEFAULT_USER: admin
       RABBITMQ_DEFAULT_PASS: mate20mg
