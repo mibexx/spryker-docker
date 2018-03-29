@@ -1,4 +1,0 @@
-set $spryker_app_name "Zed";
-set $spryker_app_url "zed.de.suite.local";
-set $spryker_app_env "development";
-set $spryker_app_store "DE";

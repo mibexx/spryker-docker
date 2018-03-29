@@ -77,13 +77,12 @@ How to add stores
 
 You can edit the compose-file and add own yves/zed container.  
 Use this service-template for that:  
-```    
+```          
   [service]:
     image: nginx:alpine
     volumes:
       - filestorage:/data
-      - ./env/conf/spryker/spryker.conf:/etc/nginx/conf.d/spryker.conf
-    - ./env/conf/spryker/spryker_params_[app]_[store]:/etc/nginx/spryker_params
+      - ./env/conf/spryker/[app]_[store].conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - admin
     deploy:
@@ -99,15 +98,71 @@ Use this service-template for that:
           - "[domain]"
 ```
 
-Also you have to create the file *./env/conf/spryker/spryker_params_[app]_[store]*
+Next you have to create the [app]_[store].conf file in ./env/conf/spryker.  
+This is the vhost configuration for your new container. Copy an existent configuration and change root_path, server_name, log-paths, APPLICATION_ENV and APPLICATION_STORE if needed.  
 
-Example:
+*Example for zed*  
+```bash
+server {
+    listen 80;
+
+    root /data/shop/development/current/public/Zed;
+    index index.php;
+
+    server_name zed.de.suite.local;
+
+    access_log /var/log/nginx/zed-de-access.log;
+    error_log /var/log/nginx/zed-de-error.log;
+
+    proxy_read_timeout 600s;
+    proxy_send_timeout 600s;
+    fastcgi_read_timeout 600s;
+    client_body_timeout 600s;
+    client_header_timeout 600s;
+    send_timeout 600s;
+
+    location ~ (/images/|/scripts|/styles|/fonts|/bundles|/favicon.ico|/robots.txt) {
+        access_log        off;
+        expires           30d;
+        add_header Pragma public;
+        add_header Cache-Control "public, must-revalidate, proxy-revalidate";
+        try_files $uri =404;
+    }
+
+    location /payone/ {
+        auth_basic off;
+        add_header X-Server $hostname;
+        try_files $uri @rewriteapp;
+    }
+
+    location / {
+        if (-f $document_root/maintenance.html) {
+            return 503;
+        }
+
+        add_header X-Server $hostname;
+
+        try_files $uri @rewriteapp;
+    }
+
+    location @rewriteapp {
+        rewrite ^(.*)$ /index.php last;
+    }
+
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass admin:9000;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+        fastcgi_param APPLICATION_ENV development;
+        fastcgi_param APPLICATION_STORE DE;
+    }
+}
 ```
-set $spryker_app_name "Yves";
-set $spryker_app_url "www.at.suite.local";
-set $spryker_app_env "development";
-set $spryker_app_store "AT";
-```
+
 
 The last step is to add your server to the loadbalancer. For that you have to edit the file ./env/conf/loadbalancer/loadbalancer.conf.  
 Add that for every new server:  
