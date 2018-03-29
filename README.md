@@ -3,6 +3,24 @@ Spryker Docker
 
 Simple docker stack environment for spryker suite development.
 
+Use in spryker project
+--------------------------
+
+Copy env-directory and compose-file to your spryker repository. It's recommended to have your spryker source in a "current" directory.  
+After running the environment you can add your source to the environment:  
+
+```bash
+
+# With docker to admin-server
+docker cp ./current admin:/data/shop/development/
+
+# With ssh to proxy-server
+scp -r -P <ssh-port> ./current root@<dockerhost>:/data/shop/development/
+
+*SSH Password is defined in your compose file. It's "spryker" for default.
+
+```
+
 
 Deploy environment (production)
 ------------------
