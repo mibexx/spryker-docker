@@ -83,10 +83,12 @@ Use this service-template for that:
     volumes:
       - filestorage:/data
     volumes:
-      - ./env/conf/spryker/spryker.conf:/etc/nginx/conf.d/default.conf
+      - ./env/conf/spryker/spryker.conf:/etc/nginx/conf.d/spryker.conf
       - ./env/conf/spryker/spryker_params_[app]_[store]:/etc/nginx/spryker_params
     depends_on:
       - admin
+    volumes:
+      - filestorage:/data
     deploy:
       replicas: 1
       update_config:
