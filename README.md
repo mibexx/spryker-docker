@@ -14,8 +14,9 @@ After running the environment you can add your source to the environment:
 # With ssh to proxy-server
 scp -r -P <ssh-port> ./current root@<dockerhost>:/data/shop/development/
 
-*SSH Password is defined in your compose file. It's "spryker" for default.
+# SSH Password is defined in your compose file. It's "spryker" for default.
 ```
+
 
 Spryker config
 -------------
