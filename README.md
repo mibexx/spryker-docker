@@ -40,7 +40,7 @@ $config[SearchConstants::ELASTICA_PARAMETER__PORT] = 9200;
 
 
 $config[PropelConstants::ZED_DB_HOST] = 'database';
-$config[PropelConstants::ZED_DB_USERNAME] = 'spryker';
+$config[PropelConstants::ZED_DB_USERNAME] = 'development';
 $config[PropelConstants::ZED_DB_PASSWORD] = 'mate20mg';
 $config[PropelConstants::ZED_DB_PORT] = 5432;
 
@@ -70,14 +70,14 @@ Get the container-id from the admin-service.
 
 ```bash
 # Helper for that:
-docker ps --filter name="admin" | awk '{ print $1 }'
+docker ps --filter name="admin" -q | awk '{ print $1 }'
 ```
   
 Then you can run "docker exec -it <container-id> bash".
 Now you can execute every command.
 
 ```
-docker exec -it $(docker ps --filter name="admin" | awk '{ print $1 }') bash
+docker exec -it $(docker ps --filter name="admin" -q | awk '{ print $1 }') bash
 
 # Now you can install spryker for example:
 composer install
