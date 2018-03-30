@@ -8,8 +8,10 @@ services:
     volumes:
       - sshshare:/root/.ssh
       - filestorage:/data
-    environment:
-      ROOT_PASSWORD: "spryker"
+    secrets:
+      - rootpassword
+    depends_on:
+      - admin
     deploy:
       replicas: 1
       update_config:
@@ -155,3 +157,7 @@ volumes:
   elasticstorage:
   redisstorage:
   sshshare:
+
+secrets:
+  rootpassword:
+    file: ./env/secrets/rootpwd

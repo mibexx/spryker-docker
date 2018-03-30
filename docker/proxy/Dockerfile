@@ -10,7 +10,7 @@ RUN apk add --update \
  && rm -rf /var/cache/apk/* \
  && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config
 
-WORKDIR ["/data/shop/development"]
+WORKDIR "/data/shop/development"
 
 ENTRYPOINT ["/entrypoint.sh"]
 

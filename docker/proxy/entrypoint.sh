@@ -8,12 +8,14 @@ if [ ! -f $SSH_FILE ]; then
     cat /root/.ssh/id_rsa.pub
 fi
 
-echo "root:${ROOT_PASSWORD}" | chpasswd
-
+if [ -f "/run/secrets/rootpassword" ]; then
+    ROOT_PASSWORD=$(less /run/secrets/rootpassword)
+    export ROOT_PASSWORD=$ROOT_PASSWORD
+    echo "root:${ROOT_PASSWORD}" | chpasswd
+fi
 
 # Generate host keys
 ssh-keygen -A
-
 
 # Run SSH server
 exec /usr/sbin/sshd -D -e "$@"

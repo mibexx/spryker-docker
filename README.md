@@ -14,7 +14,7 @@ After running the environment you can add your source to the environment:
 # With ssh to proxy-server
 scp -r -P <ssh-port> ./current root@<dockerhost>:/data/shop/development/
 
-# SSH Password is defined in your compose file. It's "spryker" for default.
+# SSH Password is defined in .env/secrets/rootpwd
 ```
 
 
@@ -70,14 +70,14 @@ Get the container-id from the admin-service.
 
 ```bash
 # Helper for that:
-docker ps | grep 'admin' | awk '{ print $1 }'
+docker ps --filter name="admin" | awk '{ print $1 }'
 ```
   
 Then you can run "docker exec -it <container-id> bash".
 Now you can execute every command.
 
 ```
-docker exec -it $(docker ps | grep 'admin' | awk '{ print $1 }') bash
+docker exec -it $(docker ps --filter name="admin" | awk '{ print $1 }') bash
 
 # Now you can install spryker for example:
 composer install
