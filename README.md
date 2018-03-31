@@ -96,6 +96,9 @@ docker exec -it $(docker ps --filter name="admin" -q | awk '{ print $1 }') bash
 # Now you can install spryker for example:
 composer install
 vendor/bin/install DE -vvv
+
+# Set permissions
+chmod -Rf 0777 /data/shop/development/current/data
 ```
 
 
