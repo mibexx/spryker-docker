@@ -64,6 +64,20 @@ $config[SetupConstants::JENKINS_BASE_URL] = 'http://jenkins:8080/';
 $config[SetupConstants::JENKINS_DIRECTORY] = '/data/shop/development/shared/data/common/jenkins';
 ```
 
+
+Prepare RabbitMQ for spryker
+------
+```bash
+docker exec -it $(docker ps --filter name="rabbitmq" -q | awk '{ print $1 }') rabbitmqctl add_vhost /DE_development_zed
+docker exec -it $(docker ps --filter name="rabbitmq" -q | awk '{ print $1 }') rabbitmqctl add_user DE_development mate20mg
+docker exec -it $(docker ps --filter name="rabbitmq" -q | awk '{ print $1 }') rabbitmqctl set_user_tags DE_development administrator
+docker exec -it $(docker ps --filter name="rabbitmq" -q | awk '{ print $1 }') rabbitmqctl set_permissions -p /DE_development_zed DE_development ".*" ".*" ".*"
+docker exec -it $(docker ps --filter name="rabbitmq" -q | awk '{ print $1 }') rabbitmqctl add_vhost /US_development_zed
+docker exec -it $(docker ps --filter name="rabbitmq" -q | awk '{ print $1 }') rabbitmqctl add_user US_development mate20mg
+docker exec -it $(docker ps --filter name="rabbitmq" -q | awk '{ print $1 }') rabbitmqctl set_user_tags US_development administrator
+docker exec -it $(docker ps --filter name="rabbitmq" -q | awk '{ print $1 }') rabbitmqctl set_permissions -p /US_development_zed US_development ".*" ".*" ".*"
+```
+
 Run console commands in spryker
 ------------
 Get the container-id from the admin-service.

@@ -16,7 +16,7 @@ $config[SearchConstants::ELASTICA_PARAMETER__PORT] = 9200;
 
 
 $config[PropelConstants::ZED_DB_HOST] = 'database';
-$config[PropelConstants::ZED_DB_USERNAME] = 'spryker';
+$config[PropelConstants::ZED_DB_USERNAME] = 'development';
 $config[PropelConstants::ZED_DB_PASSWORD] = 'mate20mg';
 $config[PropelConstants::ZED_DB_PORT] = 5432;
 

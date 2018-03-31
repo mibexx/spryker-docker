@@ -100,6 +100,7 @@ services:
     environment:
       APPLICATION_ENV: development
       APPLICATION_STORE: DE
+      PGPASSWORD: mate20mg
     deploy:
       replicas: 1
       update_config:
