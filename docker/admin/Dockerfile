@@ -14,7 +14,8 @@ ENV LANGUAGE "de_DE.UTF-8"
 ENV LANG "de_DE.UTF-8"
 ENV LC_ALL "de_DE.UTF-8"
 
-RUN locale-gen de_DE.UTF-8
+RUN locale-gen de_DE.UTF-8 \
+ && dpkg-reconfigure locales
 
 WORKDIR "/data/shop/development"
 
