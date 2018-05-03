@@ -1,6 +1,6 @@
 #!/usr/bin/sh
 
-RABBITMQ_CONTAINER=$(docker ps --filter name="rabbitmq" -q | awk '{ print $1 }')
+RABBITMQ_CONTAINER=$(docker ps --filter name="spryker_rabbitmq" -q | awk '{ print $1 }')
 
 docker exec -it $RABBITMQ_CONTAINER rabbitmqctl add_vhost /DE_development_zed
 docker exec -it $RABBITMQ_CONTAINER rabbitmqctl add_user DE_development mate20mg
