@@ -17,7 +17,7 @@ fi
 # Generate host keys
 ssh-keygen -A
 
-cat /root/.ssh/id_rsa.pub  >> /root/.ssh/authorized_keys
+cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
 
 # Run SSH server
 exec /usr/sbin/sshd -D -e "$@"
