@@ -141,7 +141,7 @@ Port "-" means, that there is no public port for that.
 
 | Port Internal | Port development | Port production | Description / Target |
 | ------------- | ---------------- | --------------- | -------------------- |
-| 22 | 2222 | 2222 | Proxy-Server to change data or tunnel ports |
+| 22 | 2222 | 2222 | Admin-Server to change data or tunnel ports |
 | 80 | 80 | 80 | Loadbalancer |
 | 1080 | 1080 | - | Mailcatcher UI (only in development) |
 | 5432 | 5432 | - | Postgres |
