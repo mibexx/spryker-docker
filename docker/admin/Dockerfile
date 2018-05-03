@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND "noninteractive"
 ENV ROOT_PASSWORD "root"
 
 RUN apt-get update \
- && apt-get install -y openssh-server \
+ && apt-get install -y openssh-server aptitude \
  && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
  && sed -i s/SendEnv\ LANG/#SendEnv\ LANG/ /etc/ssh/sshd_config \
  && mkdir -p /var/run/sshd \
