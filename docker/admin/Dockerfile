@@ -5,14 +5,18 @@ ENV DEBIAN_FRONTEND "noninteractive"
 ENV ROOT_PASSWORD "root"
 
 RUN apt-get update \
- && apt-get install -y openssh-server aptitude \
+ && apt-get install -y openssh-server locales-all \
  && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
  && sed -i s/SendEnv\ LANG/#SendEnv\ LANG/ /etc/ssh/sshd_config \
  && mkdir -p /var/run/sshd \
- && apt-get purge locales \
- && aptitude install locales \
- && dpkg-reconfigure locales \
  && rm -rf /var/lib/apt/lists/*
+
+
+RUN export LANGUAGE=de_DE.UTF-8 \
+ && export LANG=de_DE.UTF-8 \
+ && export LC_ALL=de_DE.UTF-8 \
+ && locale-gen de_DE.UTF-8 \
+ && dpkg-reconfigure locales
 
 WORKDIR "/data/shop/development"
 
