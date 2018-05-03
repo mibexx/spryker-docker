@@ -7,6 +7,7 @@ ENV ROOT_PASSWORD "root"
 RUN apt-get update \
  && apt-get install -y openssh-server locales \
  && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
+ && sed -i s/SendEnv LANG/#SendEnv LANG/ /etc/ssh/sshd_config \
  && mkdir -p /var/run/sshd \
  && rm -rf /var/lib/apt/lists/*
 
@@ -14,7 +15,7 @@ RUN apt-get update \
 RUN export LANGUAGE=en_US.UTF-8 \
  && export LANG=en_US.UTF-8 \
  && export LC_ALL=en_US.UTF-8 \
- && export LC_TYPE=en_US.UTF-8 \
+ && locale-gen en_US.UTF-8 \
  && dpkg-reconfigure locales
 
 WORKDIR "/data/shop/development"
