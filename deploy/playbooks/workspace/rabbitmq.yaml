@@ -2,4 +2,4 @@
 - hosts: 127.0.0.1
   connection: local
   tasks:
-    - script: workspace/configure_rabbitmq.sh
+    - script: configure_rabbitmq.sh
