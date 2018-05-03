@@ -1,6 +1,7 @@
 FROM mibexx/spryker-php
 MAINTAINER Mike Bertram <contact@mibexx.de>
 
+ENV DEBIAN_FRONTEND "noninteractive"
 ENV ROOT_PASSWORD "root"
 
 RUN apt-get update \
