@@ -3,7 +3,7 @@ MAINTAINER Mike Bertram <bertram@nexus-netsoft.com>
 
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash \
  && apt-get update \
- && apt-get install -y gnupg vim git curl nodejs wget sudo postgresql-common postgresql-client libpq-dev zlib1g-dev libicu-dev \
+ && apt-get install -y gnupg vim git curl nodejs wget sudo software-properties-common postgresql-common postgresql-client libpq-dev zlib1g-dev libicu-dev \
                         g++ libgmp-dev libmcrypt-dev libbz2-dev libpng-dev libjpeg62-turbo-dev \
                         libfreetype6-dev libfontconfig \
  && apt-add-repository ppa:ansible/ansible \
