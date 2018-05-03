@@ -5,7 +5,8 @@ ENV ROOT_PASSWORD "root"
 
 RUN apt-get update \
  && apt-get install -y openssh-server \
- && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config
+ && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
+ && mkdir -p /var/run/sshd
 
 WORKDIR "/data/shop/development"
 
