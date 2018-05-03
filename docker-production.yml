@@ -89,6 +89,8 @@ services:
       PGPASSWORD: mate20mg
     ports:
       - 0.0.0.0:2222:22
+    secrets:
+      - rootpassword
     depends_on:
       - php
     deploy:
