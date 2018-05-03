@@ -14,8 +14,7 @@ RUN apt-get update \
 RUN export LANGUAGE=de_DE.UTF-8 \
  && export LANG=de_DE.UTF-8 \
  && export LC_ALL=de_DE.UTF-8 \
- && locale-gen de_DE.UTF-8 \
- && locale-gen de_DE.UTF-8 \
+ && export LC_TYPE=de_DE.UTF-8 \
  && dpkg-reconfigure locales
 
 WORKDIR "/data/shop/development"
