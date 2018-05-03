@@ -1,0 +1,9 @@
+---
+- name: Install spryker-composer
+  composer:
+    command: install
+    working_dir: /data/shop/development/current
+- name: Install spryker
+  command: vendor/bin/install DE
+    args:
+      chdir: /data/shop/development/current

@@ -1,0 +1,3 @@
+---
+- include: workspace/rabbitmq.yaml
+- include: suite/suite.yaml

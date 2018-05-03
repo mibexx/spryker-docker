@@ -1,0 +1,9 @@
+---
+- git:
+    repo: https://github.com/spryker-shop/suite
+    dest: /data/shop/development/current
+- file:
+    dest: /data/shop/development
+    owner: www-data
+    group: www-data
+    recuse: yes

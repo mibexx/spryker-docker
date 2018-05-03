@@ -1,0 +1,8 @@
+---
+- name: Setup configs
+  copy:
+    src: files/config/config_local.php
+    dest: /data/shop/development/current/config/Shared/config_local.php
+    owner: www-data
+    group: www-data
+    mode: u=rw, g=rw, o=r
