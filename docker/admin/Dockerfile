@@ -11,11 +11,11 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 
-ENV LANGUAGE "de_DE.UTF-8"
-ENV LANG "de_DE.UTF-8"
-ENV LC_ALL "de_DE.UTF-8"
-
-RUN locale-gen de_DE.UTF-8 \
+RUN export LANGUAGE=de_DE.UTF-8 \
+ && export LANG=de_DE.UTF-8 \
+ && export LC_ALL=de_DE.UTF-8 \
+ && locale-gen de_DE.UTF-8 \
+ && locale-gen de_DE.UTF-8 \
  && dpkg-reconfigure locales
 
 WORKDIR "/data/shop/development"
