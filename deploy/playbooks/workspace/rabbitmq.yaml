@@ -3,18 +3,18 @@
   connection: local
   tasks:
     - name: Configure rabbit-mq | Add DE vhost
-      command: docker exec -it $(docker ps --filter name="rabbitmq" -q | awk '{ print $1 }') rabbitmqctl add_vhost /DE_development_zed
+      command: "docker exec -it $(docker ps --filter name='rabbitmq' -q | awk '{ print $1 }') rabbitmqctl add_vhost /DE_development_zed"
     - name: Configure rabbit-mq | Add DE User
-      command: docker exec -it $(docker ps --filter name="rabbitmq" -q | awk '{ print $1 }') rabbitmqctl add_user DE_development mate20mg
+      command: "docker exec -it $(docker ps --filter name='rabbitmq' -q | awk '{ print $1 }') rabbitmqctl add_user DE_development mate20mg"
     - name: Configure rabbit-mq | configure DE user
-      command: docker exec -it $(docker ps --filter name="rabbitmq" -q | awk '{ print $1 }') rabbitmqctl set_user_tags DE_development administrator
+      command: "docker exec -it $(docker ps --filter name='rabbitmq' -q | awk '{ print $1 }') rabbitmqctl set_user_tags DE_development administrator"
     - name: Configure rabbit-mq | set DE permissions
-      command: docker exec -it $(docker ps --filter name="rabbitmq" -q | awk '{ print $1 }') rabbitmqctl set_permissions -p /DE_development_zed DE_development ".*" ".*" ".*"
+      command: "docker exec -it $(docker ps --filter name='rabbitmq' -q | awk '{ print $1 }') rabbitmqctl set_permissions -p /DE_development_zed DE_development '.*' '.*' '.*'"
     - name: Configure rabbit-mq | add US vhost
-      command: docker exec -it $(docker ps --filter name="rabbitmq" -q | awk '{ print $1 }') rabbitmqctl add_vhost /US_development_zed
+      command: "docker exec -it $(docker ps --filter name='rabbitmq' -q | awk '{ print $1 }') rabbitmqctl add_vhost /US_development_zed"
     - name: Configure rabbit-mq | Add US User
-      command: docker exec -it $(docker ps --filter name="rabbitmq" -q | awk '{ print $1 }') rabbitmqctl add_user US_development mate20mg
+      command: "docker exec -it $(docker ps --filter name='rabbitmq' -q | awk '{ print $1 }') rabbitmqctl add_user US_development mate20mg"
     - name: Configure rabbit-mq | Configure US user
-      command: docker exec -it $(docker ps --filter name="rabbitmq" -q | awk '{ print $1 }') rabbitmqctl set_user_tags US_development administrator
+      command: "docker exec -it $(docker ps --filter name='rabbitmq' -q | awk '{ print $1 }') rabbitmqctl set_user_tags US_development administrator"
     - name: Configure rabbit-mq | Set US permissions
-      command: docker exec -it $(docker ps --filter name="rabbitmq" -q | awk '{ print $1 }') rabbitmqctl set_permissions -p /US_development_zed US_development ".*" ".*" ".*"
+      command: "docker exec -it $(docker ps --filter name='rabbitmq' -q | awk '{ print $1 }') rabbitmqctl set_permissions -p /US_development_zed US_development '.*' '.*' '.*'"
