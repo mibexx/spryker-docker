@@ -6,4 +6,4 @@
     dest: /data/shop/development
     owner: www-data
     group: www-data
-    recusive: yes
+    recurse: yes
