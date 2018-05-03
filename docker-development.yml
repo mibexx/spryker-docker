@@ -4,7 +4,7 @@ services:
   proxy:
     image: mibexx/spryker-proxy
     ports:
-      - 22
+      - 0.0.0.0:2222:22
     volumes:
       - sshshare:/root/.ssh
       - filestorage:/data
