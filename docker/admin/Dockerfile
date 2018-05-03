@@ -2,9 +2,13 @@ FROM php:7.1.15-fpm
 MAINTAINER Mike Bertram <bertram@nexus-netsoft.com>
 
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash \
+ && apt-get update \
  && apt-get install -y gnupg vim git curl nodejs wget sudo postgresql-common postgresql-client libpq-dev zlib1g-dev libicu-dev \
                         g++ libgmp-dev libmcrypt-dev libbz2-dev libpng-dev libjpeg62-turbo-dev \
                         libfreetype6-dev libfontconfig \
+ && apt-add-repository ppa:ansible/ansible \
+ && apt-get update \
+ && apt-get install -y ansible \
  && rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-install -j$(nproc) iconv pdo pgsql pdo_pgsql intl bcmath gmp bz2 zip mcrypt \

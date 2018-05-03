@@ -6,7 +6,7 @@ COPY entrypoint.sh /
 ENV ROOT_PASSWORD "root"
 
 RUN apk add --update \
- && apk add openssh \
+ && apk add openssh ansible \
  && rm -rf /var/cache/apk/* \
  && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config
 
