@@ -5,11 +5,7 @@ RUN curl -sL https://deb.nodesource.com/setup_8.x | bash \
  && apt-get update \
  && apt-get install -y gnupg vim git curl nodejs wget sudo postgresql-common postgresql-client libpq-dev zlib1g-dev libicu-dev \
                         g++ libgmp-dev libmcrypt-dev libbz2-dev libpng-dev libjpeg62-turbo-dev \
-                        libfreetype6-dev libfontconfig \
- && deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main \
- && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367 \
- && apt-get update \
- && apt-get install -y ansible \
+                        libfreetype6-dev libfontconfig ansible \
  && rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-install -j$(nproc) iconv pdo pgsql pdo_pgsql intl bcmath gmp bz2 zip mcrypt \
