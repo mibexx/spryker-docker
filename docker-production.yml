@@ -1,17 +1,10 @@
 version: '3.2'
 
 services:
-  proxy:
-    image: mibexx/spryker-proxy
-    ports:
-      - 0.0.0.0:2222:22
+  php:
+    image: mibexx/spryker-php
     volumes:
-      - sshshare:/root/.ssh
       - filestorage:/data
-    secrets:
-      - rootpassword
-    depends_on:
-      - admin
     deploy:
       replicas: 1
       update_config:
@@ -94,6 +87,10 @@ services:
       APPLICATION_ENV: development
       APPLICATION_STORE: DE
       PGPASSWORD: mate20mg
+    ports:
+      - 0.0.0.0:2222:22
+    depends_on:
+      - php
     deploy:
       replicas: 1
       update_config:
