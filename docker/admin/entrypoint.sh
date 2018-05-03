@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/bin/bash
 
 SSH_FILE="/root/.ssh/id_rsa"
 
