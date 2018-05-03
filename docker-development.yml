@@ -97,6 +97,7 @@ services:
     image: mibexx/spryker-admin
     volumes:
       - filestorage:/data
+      - sshshare:/root/.ssh
     environment:
       APPLICATION_ENV: development
       APPLICATION_STORE: DE
