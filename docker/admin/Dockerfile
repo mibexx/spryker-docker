@@ -1,4 +1,4 @@
-FROM mibexx/spryker-admin
+FROM mibexx/spryker-php
 MAINTAINER Mike Bertram <contact@mibexx.de>
 
 ENV ROOT_PASSWORD "root"
