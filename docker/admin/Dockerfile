@@ -11,10 +11,10 @@ RUN apt-get update \
  && rm -rf /var/lib/apt/lists/*
 
 
-RUN export LANGUAGE=de_DE.UTF-8 \
- && export LANG=de_DE.UTF-8 \
- && export LC_ALL=de_DE.UTF-8 \
- && export LC_TYPE=de_DE.UTF-8 \
+RUN export LANGUAGE=en_US.UTF-8 \
+ && export LANG=en_US.UTF-8 \
+ && export LC_ALL=en_US.UTF-8 \
+ && export LC_TYPE=en_US.UTF-8 \
  && dpkg-reconfigure locales
 
 WORKDIR "/data/shop/development"
