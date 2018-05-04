@@ -1,8 +1,5 @@
 ---
-- hosts: all
-  remote_user: root
-  vars:
-    sprykerenv:
-      PGPASSWORD: mate20mg
-      APPLICATION_ENV: development
-      APPLICATION_STORE: de
+  sprykerenv:
+    PGPASSWORD: mate20mg
+    APPLICATION_ENV: development
+    APPLICATION_STORE: de
