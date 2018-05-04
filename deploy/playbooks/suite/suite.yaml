@@ -5,10 +5,10 @@
     - config/spryker_de.yaml
   tasks:
     - name: Prepare workspace
-      import_playbook: subs/prepare_workspace.yaml
+      import_tasks: subs/prepare_workspace.yaml
     - name: Prepare spryker
-      import_playbook: subs/spryker_prepare.yaml
+      import_tasks: subs/spryker_prepare.yaml
     - name: Setup spryker
-      import_playbook: subs/spryker_setup.yaml
+      import_tasks: subs/spryker_setup.yaml
     - name: Finish it
-      import_playbook: subs/spryker_postwork.yaml
+      import_tasks: subs/spryker_postwork.yaml
