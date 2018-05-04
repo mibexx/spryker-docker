@@ -1,0 +1,170 @@
+version: '3.2'
+
+services:
+  php:
+    image: mibexx/spryker-php
+    volumes:
+      - filestorage:/data
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+  loadbalancer:
+    image: nginx:alpine
+    volumes:
+      - ./env/conf/loadbalancer/loadbalancer.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 0.0.0.0:80:80
+    depends_on:
+      - yves
+      - zed
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+  database:
+    image: postgres:9.6.8-alpine
+    environment:
+      POSTGRES_USER: development
+      POSTGRES_PASSWORD: mate20mg
+    volumes:
+      - dbstorage:/var/lib/postgresql/data
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+  redis:
+    image: redis:3.2.11-alpine
+    command: redis-server --appendonly yes
+    volumes:
+      - redisstorage:/data
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+  elasticsearch:
+    image: elasticsearch:5.6.8
+    volumes:
+      - ./env/conf/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - elasticstorage:/usr/share/elasticsearch/data
+    deploy:
+      resources:
+        limits:
+          memory: 1000M
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+  rabbitmq:
+    image: rabbitmq:3.7.3-management
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: mate20mg
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+  admin:
+    image: mibexx/spryker-admin
+    volumes:
+      - filestorage:/data
+      - sshshare:/root/.ssh
+    environment:
+      APPLICATION_ENV: development
+      APPLICATION_STORE: DE
+      PGPASSWORD: mate20mg
+    ports:
+      - 0.0.0.0:2222:22
+    secrets:
+      - rootpassword
+    depends_on:
+      - php
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+  jenkins:
+    image: mibexx/spryker-jenkins
+    volumes:
+      - filestorage:/data
+    depends_on:
+      - admin
+    environment:
+      JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"
+    deploy:
+      resources:
+        limits:
+          memory: 1000M
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+  yves:
+    image: nginx:alpine
+    volumes:
+      - filestorage:/data
+      - ./env/conf/spryker/yves_de.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - admin
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+    networks:
+      default:
+        aliases:
+          - "zed.de.suite.local"
+  zed:
+    image: nginx:alpine
+    volumes:
+      - filestorage:/data
+      - ./env/conf/spryker/zed_de.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - admin
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+    networks:
+      default:
+        aliases:
+          - "zed.de.suite.local"
+
+volumes:
+  filestorage:
+  dbstorage:
+  elasticstorage:
+  redisstorage:
+  sshshare:
+
+secrets:
+  rootpassword:
+    file: ./env/secrets/rootpwd
