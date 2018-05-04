@@ -1,0 +1,6 @@
+---
+- name: Include all configs
+  include_vars:
+    dir: config
+    extensions:
+        - yaml
