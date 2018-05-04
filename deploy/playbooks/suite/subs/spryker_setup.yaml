@@ -4,6 +4,8 @@
     command: install
     working_dir: /data/shop/development/current
     no_dev: no
+- name: Revoke postgre access
+  command: psql -h 127.0.0.1 -p 5432 -u {{psqlusername}} -c "REVOKE CONNECT ON DATABASE {{psqldatabase}} FROM public" {{psqldatabase}}
 - name: Install spryker
   command: "vendor/bin/install DE"
   args:
