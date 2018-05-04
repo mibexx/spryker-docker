@@ -2,4 +2,4 @@
   sprykerenv:
     PGPASSWORD: mate20mg
     APPLICATION_ENV: development
-    APPLICATION_STORE: de
+    APPLICATION_STORE: DE

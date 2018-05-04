@@ -2,7 +2,7 @@
 - hosts: admin
   remote_user: root
   vars_files:
-    - config/config.yaml
+    - config/spryker_de.yaml
   tasks:
     - include: subs/prepare_workspace.yaml
     - include: subs/spryker_prepare.yaml
