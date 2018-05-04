@@ -8,3 +8,4 @@
   command: "vendor/bin/install DE"
   args:
     chdir: /data/shop/development/current
+  environment: "{{sprykerenv}}"
