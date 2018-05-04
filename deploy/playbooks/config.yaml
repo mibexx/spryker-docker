@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  remote_user: root
   vars:
     sprykerenv:
       PGPASSWORD: mate20mg
