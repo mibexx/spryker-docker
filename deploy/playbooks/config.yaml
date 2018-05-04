@@ -1,5 +1,6 @@
 ---
-- vars:
+- hosts: all
+  vars:
     sprykerenv:
       PGPASSWORD: mate20mg
       APPLICATION_ENV: development
