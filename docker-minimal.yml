@@ -60,9 +60,6 @@ services:
       - ./env/conf/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
       - elasticstorage:/usr/share/elasticsearch/data
     deploy:
-      resources:
-        limits:
-          memory: 1G
       replicas: 1
       update_config:
         parallelism: 2
@@ -97,6 +94,9 @@ services:
     depends_on:
       - php
     deploy:
+      resources:
+        limits:
+          memory: 2G
       replicas: 1
       update_config:
         parallelism: 2
@@ -112,9 +112,6 @@ services:
     environment:
       JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"
     deploy:
-      resources:
-        limits:
-          memory: 2G
       replicas: 1
       update_config:
         parallelism: 2
