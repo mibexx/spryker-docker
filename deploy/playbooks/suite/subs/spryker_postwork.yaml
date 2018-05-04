@@ -3,4 +3,4 @@
     dest: /data/shop/development
     owner: www-data
     group: www-data
-    recuse: yes
+    recurse: yes
