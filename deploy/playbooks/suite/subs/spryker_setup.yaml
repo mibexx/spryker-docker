@@ -7,9 +7,11 @@
 - name: Terminate DB access
   command: psql -h database -p 5432 -w -U {{psqlusername}} -c "SELECT pid, pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = current_database() AND pid <> pg_backend_pid();" {{psqldatabase}}
   environment: "{{sprykerenv}}"
+  ignore_errors: yes
 - name: Drop db
   command: dropdb -h database -p 5432 -w -U {{psqlusername}} {{psqldatabase}}
   environment: "{{sprykerenv}}"
+  ignore_errors: yes
 - name: Install spryker
   command: "vendor/bin/install DE"
   args:
