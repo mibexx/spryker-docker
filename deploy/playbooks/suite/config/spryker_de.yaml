@@ -1,8 +1,7 @@
 ---
   psqlusername: development
   psqldatabase: DE_development_zed
-  psqlpassword: mate20mg
   sprykerenv:
-    PGPASSWORD: {{psqlpassword}}
+    PGPASSWORD: mate20mg
     APPLICATION_ENV: development
     APPLICATION_STORE: DE
