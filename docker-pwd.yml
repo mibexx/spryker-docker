@@ -62,7 +62,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 1000M
+          memory: 1G
       replicas: 1
       update_config:
         parallelism: 2
@@ -114,7 +114,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 1000M
+          memory: 1500M
       replicas: 1
       update_config:
         parallelism: 2
