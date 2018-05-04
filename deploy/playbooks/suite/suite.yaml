@@ -4,7 +4,7 @@
   vars_files:
     - config/spryker_de.yaml
   tasks:
-    - include: subs/prepare_workspace.yaml
-    - include: subs/spryker_prepare.yaml
-    - include: subs/spryker_setup.yaml
-    - include: subs/spryker_postwork.yaml
+    - import_playbook: subs/prepare_workspace.yaml
+    - import_playbook: subs/spryker_prepare.yaml
+    - import_playbook: subs/spryker_setup.yaml
+    - import_playbook: subs/spryker_postwork.yaml

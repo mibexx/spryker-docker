@@ -1,2 +1,2 @@
 ---
-- include: suite/suite.yaml
+- import_playbook: suite/suite.yaml
