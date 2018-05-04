@@ -17,6 +17,18 @@ scp -r -P <ssh-port> ./current root@<dockerhost>:/data/shop/development/
 # SSH Password is defined in .env/secrets/rootpwd
 ```
 
+Install spryker suite
+-----------------------
+To install the spryker suite in that environment you can use the ansible installation.
+
+```
+docker stack deploy -c docker-production.yaml spryker
+cd deploy
+sh install.sh
+```
+
+That installation clone the suite repository into the admin-container, prepare the environment and install the application.
+
 
 Spryker config
 -------------
